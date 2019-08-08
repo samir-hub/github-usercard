@@ -56,6 +56,47 @@ followersArray.forEach( item => {
   })
 })
 
+
+
+//STRETCH
+
+let realFollowers = [];
+
+function getFollowers (){
+  axios.get('https://api.github.com/users/samir-hub/followers')
+  .then( (response) => {
+    response.data.forEach(follower => {
+      realFollowers.push(follower.login);
+    })
+    // response.data.message.forEach( item => {
+    //   let newDog = DogCard(item)
+    //   entryPoint.appendChild(newDog)
+    // })
+    realFollowers.forEach( item => {
+      // let newDog = DogCard(item)
+      // entryPoint.appendChild(newDog)
+      axios.get(`https://api.github.com/users/${item}`)
+      .then( (response) => {
+        console.log(response)
+        // response.data.message.forEach( item => {
+        //   let newDog = DogCard(item)
+        //   entryPoint.appendChild(newDog)
+        // })
+      
+        let newPerson = GitCard(response);
+        cardsContainer.appendChild(newPerson);
+        
+      })
+    })
+
+  })
+}
+
+//
+
+
+
+
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -139,3 +180,6 @@ let cardsContainer = document.querySelector('.cards');
   luishrd
   bigknell
 */
+
+getFollowers();
+
