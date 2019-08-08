@@ -140,9 +140,10 @@ function GitCard(object){
   location.textContent = `Location: ${object.data.location||"none"}`; 
 
   const profile = document.createElement('p');
+  profile.textContent = `Profile:`
 
   const profileInfo = document.createElement('a');
-  profileInfo.textContent = `Profile: ${object.data.html_url}`
+  profileInfo.textContent = ` ${object.data.html_url}`
   profileInfo.href = object.data.html_url;
 
   const followers = document.createElement('p');
